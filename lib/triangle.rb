@@ -1,26 +1,32 @@
 class Triangle
-  # write code here
-  attr_accessor :lengthA, :lengthB, :lengthC
-  def initialize(lengthA, lengthB, lengthC)
-    @lengthA = lengthA
-    @lengthB = lengthB
-    @lengthC = lengthC
-  end
-  def kind
-    if (@lengthA <= 0 || @lengthB <= 0 || @lengthC <= 0 || (@lengthA + @lengthB) <= @lengthC || (@lengthB + @lengthC) <= @lengthA || (@lengthA + @lengthC) <= @lengthB )
-      # begin
-      raise TriangleError
-      # rescue TriangleError
-          # puts error.message
-      # end
-    elsif(@lengthA == @lengthB && @lengthB ==@lengthC && lengthA > 0)
-      return :equilateral
-    elsif (@lengthA == @lengthB || @lengthA == @lengthC || @lengthB == @lengthC)
-      return :isosceles
-    elsif (@lengthA != @lengthB && @lengthB!=@lengthC)
-      return :scalene
-    end
-  end
+  attr_accessor :side_a, :side_b, :side_c
+ def initialize(side_a, side_b, side_c)
+   @side_a = side_a
+   @side_b = side_b
+   @side_c = side_c
+ end
+ def kind
+   kind=nil
+   if (side_a<=0 || side_b<=0 || side_c<=0) ||
+     (side_a+side_b<=side_c || side_a+side_c<=side_b || side_b+side_c<=side_a)
+     raise TriangleError
 
+   elsif (side_a == side_b && side_a == side_c)
+     kind = :"equilateral"
+     #binding.pry
+   elsif (side_a == side_b || side_a == side_c || side_b == side_c)
+     kind = :"isosceles"
+   elsif (side_a != side_b && side_a != side_c && side_b != side_c)
+     kind = :"scalene"
+   else
+
+   end
+
+ end
+
+end
+class TriangleError < StandardError
+  def message
+    "The sum of the lengths of any two sides of a triangle always exceeds the length of the third side"
   end
 end
