@@ -13,11 +13,11 @@ class Triangle
       # rescue TriangleError
           # puts error.message
       # end
-    elsif(@sideA == @sideB && @sideB ==@sideC && sideA > 0)
+    elsif(@lengthA == @lengthB && @lengthB ==@lengthC && lengthA > 0)
       return :equilateral
-    elsif (@sideA == @sideB || @sideA == @sideC || @sideB == @sideC)
+    elsif (@lengthA == @lengthB || @lengthA == @lengthC || @lengthB == @lengthC)
       return :isosceles
-    elsif (@sideA != @sideB && @sideB!=@sideC)
+    elsif (@lengthA != @lengthB && @lengthB!=@lengthC)
       return :scalene
     end
   end
